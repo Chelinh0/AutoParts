@@ -1,4 +1,7 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/services/firestore-services.dart';
+import 'package:flutter_material_design_icons/flutter_material_design_icons.dart';
 
 class Catalogo extends StatefulWidget {
   const Catalogo({Key? key}) : super(key: key);
@@ -74,19 +77,27 @@ class _CatalogoState extends State<Catalogo> {
           SizedBox(height: 20),
           // Aquí puedes mostrar los productos si lo necesitas
           Expanded(
-            child: GridView.builder(
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-              ),
-              itemCount: productos.length,
-              itemBuilder: (BuildContext context, int index) {
-                return Padding(
-                  padding: EdgeInsets.all(10),
-                  child: Image.asset(productos[index].photoPath),
-                );
-              },
+            child: StreamBuilder(
+              stream: FirestoreService().productos(),
+              builder: (context, AsyncSnapshot<QuerySnapshot> snapshot){
+                if (!snapshot.hasData || snapshot.connectionState == ConnectionState.waiting) {
+                  return Center(
+                    child: CircularProgressIndicator(),
+                  );
+                }
+                return ListView.separated(
+                  separatorBuilder: (_,__) => Divider(), 
+                  itemCount: snapshot.data!.docs.length,
+                  itemBuilder: (context, index){
+                    var producto = snapshot.data!.docs[index];
+                    return ListTile(
+                      leading: Icon(MdiIcons.car),
+                      title: Text('${producto['nombre']} ${producto['descripcion']}'),
+                      subtitle: Text('Precio: ${producto['precio']}'),
+                    );
+                  } );
+              }),
             ),
-          ),
         ],
       ),
     );
