@@ -1,13 +1,13 @@
 {
   "project_info": {
-    "project_number": "562160704851",
-    "project_id": "autoparts-2e999",
-    "storage_bucket": "autoparts-2e999.appspot.com"
+    "project_number": "685681649049",
+    "project_id": "auto-b68ac",
+    "storage_bucket": "auto-b68ac.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:562160704851:android:89d7aa9b3a165d3c9a15a6",
+        "mobilesdk_app_id": "1:685681649049:android:eb4debf3e18efaa70c9f08",
         "android_client_info": {
           "package_name": "com.example.flutter_application_1"
         }
@@ -15,7 +15,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyCFgfG3tz_dFhDXX9aLVJrMMH2ONyF_wag"
+          "current_key": "AIzaSyDxVLXu8wcKZsoTOFxoBC7T1ivUGSbSPUw"
         }
       ],
       "services": {
